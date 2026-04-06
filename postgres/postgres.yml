@@ -62,10 +62,10 @@ databaseChangeLog:
             columnName: CustomData
 databaseChangeLog:
   - changeSet:
-      id: add-account-status-column-to-users2
+      id: add-account-status-column-to-users3
       author: anthony.pahl@harness.io
       comment: Adds a new boolean column AccountStatus to the users table with a default value of true
-      labels: "users,account-status2"
+      labels: "users,account-status3"
       changes:
         - addColumn:
             tableName: users
