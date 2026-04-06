@@ -1,87 +1,45 @@
 databaseChangeLog:
   - changeSet:
-      id: 1761609680050-1
+      id: create-users-table
       author: anthony.pahl@harness.io
-      comment: Create subscribers table
-      labels: "dev"
+      comment: Creates a basic users table for storing user information
+      labels: "users,initial-setup"
       changes:
         - createTable:
-            tableName: subscribers
+            tableName: users
             columns:
               - column:
-                  name: subscriber_id
-                  type: BIGSERIAL
+                  name: id
+                  type: SERIAL
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_subscribers
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
               - column:
                   name: email
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
                     unique: true
-                    uniqueConstraintName: uk_subscribers_email
               - column:
-                  name: signup_date
-                  type: TIMESTAMP WITH TIME ZONE
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: first_name
+                  type: VARCHAR(100)
               - column:
-                  name: terms_accepted
-                  type: BOOLEAN
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
-              - column:
-                  name: terms_accepted_date
-                  type: TIMESTAMP WITH TIME ZONE
+                  name: last_name
+                  type: VARCHAR(100)
               - column:
                   name: created_at
-                  type: TIMESTAMP WITH TIME ZONE
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
+                  type: TIMESTAMP
+                  defaultValueComputed: NOW()
               - column:
                   name: updated_at
-                  type: TIMESTAMP WITH TIME ZONE
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
+                  type: TIMESTAMP
+                  defaultValueComputed: NOW()
       rollback:
         - dropTable:
-            tableName: subscribers
-
-  - changeSet:
-      id: 1761609680050-2
-      author: anthony.pahl@harness.io
-      comment: Create index on email for fast lookups
-      labels: "dev"
-      changes:
-        - createIndex:
-            indexName: idx_subscribers_email
-            tableName: subscribers
-            columns:
-              - column:
-                  name: email
-      rollback:
-        - dropIndex:
-            indexName: idx_subscribers_email
-            tableName: subscribers
-
-  - changeSet:
-      id: 1761609680050-3
-      author: anthony.pahl@harness.io
-      comment: Create index on signup_date for date-based queries
-      labels: "dev"
-      changes:
-        - createIndex:
-            indexName: idx_subscribers_signup_date
-            tableName: subscribers
-            columns:
-              - column:
-                  name: signup_date
-      rollback:
-        - dropIndex:
-            indexName: idx_subscribers_signup_date
-            tableName: subscribers
+            tableName: users
