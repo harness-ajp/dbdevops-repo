@@ -60,3 +60,20 @@ databaseChangeLog:
         - dropColumn:
             tableName: users
             columnName: CustomData
+databaseChangeLog:
+  - changeSet:
+      id: add-account-status-flag
+      author: anthony.pahl@harness.io
+      comment: Add AccountStatus field
+      labels: "users,customdata,schema-change"
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: AccountStatus
+                  type: BOOLEAN
+      rollback:
+        - dropColumn:
+            tableName: users
+            columnName: AccountStatus
