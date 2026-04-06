@@ -43,20 +43,3 @@ databaseChangeLog:
       rollback:
         - dropTable:
             tableName: users
-databaseChangeLog:
-  - changeSet:
-      id: add-customdata-column-to-users
-      author: anthony.pahl@harness.io
-      comment: Add CustomData column to users table for storing large text data
-      labels: "users,customdata,schema-change"
-      changes:
-        - addColumn:
-            tableName: users
-            columns:
-              - column:
-                  name: CustomData
-                  type: TEXT
-      rollback:
-        - dropColumn:
-            tableName: users
-            columnName: CustomData
