@@ -62,10 +62,10 @@ databaseChangeLog:
             columnName: CustomData
 databaseChangeLog:
   - changeSet:
-      id: add-account-status-flag
+      id: add-account-status-column-to-users
       author: anthony.pahl@harness.io
-      comment: Add AccountStatus field
-      labels: "users,customdata,schema-change"
+      comment: Adds a new boolean column AccountStatus to the users table with a default value of true
+      labels: "users,account-status"
       changes:
         - addColumn:
             tableName: users
@@ -73,6 +73,9 @@ databaseChangeLog:
               - column:
                   name: AccountStatus
                   type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: true
       rollback:
         - dropColumn:
             tableName: users
