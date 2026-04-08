@@ -80,3 +80,23 @@ databaseChangeLog:
         - dropColumn:
             tableName: users
             columnName: AccountStatus
+databaseChangeLog:
+  - changeSet:
+      id: add-account-status-column-to-users4
+      author: anthony.pahl@harness.io
+      comment: Adds a new boolean column AccountStatus to the users table with a default value of true
+      labels: "users,account-status4"
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: AccountStatus
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: true
+      rollback:
+        - dropColumn:
+            tableName: users
+            columnName: AccountStatus
