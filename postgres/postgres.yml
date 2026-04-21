@@ -102,7 +102,7 @@ databaseChangeLog:
             columnName: AccountStatus
 databaseChangeLog:
   - changeSet:
-      id: add-initiation-date-to-users
+      id: add-initiation-date-to-users2
       author: anthony.pahl@harness.io
       comment: Add initiation_date column to users table to track when customers were initiated
       labels: "users,initiation_date,add_column"
