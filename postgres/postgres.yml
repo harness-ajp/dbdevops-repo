@@ -62,3 +62,22 @@ databaseChangeLog:
         - dropColumn:
             tableName: users
             columnName: aux_data
+databaseChangeLog:
+  - changeSet:
+      id: add-aux2-data-field-to-users
+      author: anthony.pahl@harness.io
+      comment: Add aux_data2 field for extra data2
+      labels: "users,aux_data2,add_column"
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: aux_data2
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+      rollback:
+        - dropColumn:
+            tableName: users
+            columnName: aux_data2
